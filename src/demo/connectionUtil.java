@@ -19,7 +19,8 @@ public class connectionUtil {
             driver = "com.mysql.jdbc.Driver";
             url = "jdbc:mysql://localhost:3306/test";
             username = "root";
-            password = "admin";
+//            password = "admin";
+            password = "touwen";
 
             //加载驱动类
             Class.forName(driver);

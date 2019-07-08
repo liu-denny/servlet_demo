@@ -38,16 +38,16 @@ public class registered extends HttpServlet {
             PreparedStatement ptst = null;
             try{
                 conn = connectionUtil.getConnection();
-                String sql = "SELECT name FROM test";
+                String sql = "SELECT username FROM user";
                 ptst = conn.prepareStatement(sql);
                 rs = ptst.executeQuery();
                 while (rs.next()) {
-                    if(username.equals(rs.getString("name"))){
+                    if(username.equals(rs.getString("username"))){
                         System.out.println("用户名已存在");
-                        break;
+                        return;
                     }
                 }
-                String ins = "insert into test(name,password) values (?,?)";
+                String ins = "insert into user(username,password) values (?,?)";
                 ptst = conn.prepareStatement(ins);
                 ptst.setString(1,username);
                 ptst.setString(2,password1);
@@ -56,10 +56,6 @@ public class registered extends HttpServlet {
                     System.out.println("注册成功");
                 }else {
                     System.out.println("注册失败");
-                }
-                rs = ptst.executeQuery();
-                while (rs.next()) {
-                    System.out.println(rs.getString("name"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
